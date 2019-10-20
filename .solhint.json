@@ -1,0 +1,12 @@
+{
+  "extends": "solhint:default"
+  "rules": {
+      "indent": ["error", 4],
+
+      "bracket-align": "warn",
+      "func-visibility": "warn"
+      "no-simple-event-func-name": "warn",
+      "reentrancy": "warn",
+      "state-visibility": "warn"
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "TransactCall",
+  "version": "1.0.0",
+  "description": "Smart contract simulating simple counter",
+  "author": "darkost12 <darkost12@gmail.com>",
+  "license": "MIT",
+  "repository": "https://github.com/darkost12/TransactCall.git",
+  "keywords": [
+    "solidity",
+    "python",
+    "ethereum",
+    "smart",
+    "contracts",
+    "openzeppelin"
+  ],
+  "devDependencies": {
+    "@openzeppelin/contracts": "^2.3.0",
+    "@openzeppelin/test-helpers": "^0.5.3",
+    "bignumber": "^1.1.0",
+    "bn.js": "^5.0.0",
+    "chai": "^4.2.0",
+    "ganache": "^6.4.4",
+    "openzeppelin-solidity": "^2.3.0",
+    "solhint": "^2.3.0",
+    "solidity": "^0.0.1",
+    "solidity-coverage": "^0.6.7",
+    "truffle": "^5.0.40",
+    "truffle-artifactor": "^4.0.30",
+    "truffle-flattener": "^1.4.2",
+    "web3": "^1.2.1"
+  }
+}
