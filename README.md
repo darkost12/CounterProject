@@ -2,9 +2,15 @@
 Ethereum smart contract of simple counter
 ## Installation
 ```bash
-git clone https://github.com/darkost12/CounterProject
+npm run build
+yarn build
 ```
-## Auto test are available
+## Only compile
+```bash
+npm run compile
+yarn compile
+```
+## Tests are available
 ```bash
 npm run test
 npm run coverage
@@ -14,7 +20,7 @@ or
 yarn test
 yarn coverage
 ```
-## Python interface application and tests:
+## Python interface application and tests
 * IMPORTANT! Before usage and running tests make sure your ganache is on and environment variable CONT_ADDR is set!
 ```bash
 pytest test_counter.py

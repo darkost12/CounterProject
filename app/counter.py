@@ -5,13 +5,16 @@ import sys
 import os
 
 
-# Class which provides Counter type object
 class Counter:
+    """ Class which provides Counter type object.
+    """
+
     def __init__(self):
         self.getContract()
 
-    # Function that connects to ganache client
     def connect():
+        """ Function that connects to ganache client.
+        """
         web3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:8545"))
         web3.eth.defaultAccount = web3.eth.accounts[0]
         if web3.isConnected():
@@ -20,8 +23,11 @@ class Counter:
         else:
             sys.exit("Error. Check ganache-cli settings.")
 
-    # Function that links application with contract in the network
     def getContract(self):
+        """ Function that links application with contract in the network.
+        Args:
+            self (Counter instance).
+        """
         address = os.getenv("CONT_ADDR")
         if address == None:
             sys.exit("Set contract address in variable \'CONT_ADDR\' manually")
@@ -31,15 +37,23 @@ class Counter:
             address=Counter.web3.toChecksumAddress(address), abi=abi
         )
 
-    # Function that gets the value of counter from the state variable
-    # return value - the current state of variable in contract
     def getCount(self):
+        """ Function that gets the value of counter from the state variable.
+        Args:
+            self (Counter instance).
+        Returns:
+            value (uint)  the current state of variable in contract.
+        """
         value = self.contract.functions.getCount().call()
         print("The current value of counter is ", value)
         return value
 
-    # Function that assigns new value to the state variable in contract
     def setCount(self, value):
+        """ Function that assigns new value to the state variable in contract.
+        Args:
+            self (Counter instance);
+            value (uint) - value to assign to the state variable.
+        """
         if int(value) < 0:
             print("Unable to set negative counter")
             return False
@@ -47,15 +61,24 @@ class Counter:
         tx_receipt = Counter.web3.eth.waitForTransactionReceipt(tx_hash)
         self.getCount()
 
-    # Function that increases the state variable by 1
     def increment(self):
+        """ Function that increases the state variable by 1.
+        Args:
+            self (Counter instance).
+        """
         tx_hash = self.contract.functions.increment().transact()
         tx_receipt = Counter.web3.eth.waitForTransactionReceipt(tx_hash)
         self.getCount()
 
-    # Function that reduces the state variable by 1
+    #
     # return False - if 0 was met
     def decrement(self):
+        """ Function that reduces the state variable by 1.
+        Args:
+            self (Counter instance).
+        Returns:
+            False (bool)  if trying to decrement zero. Used for logging.
+        """
         if int(self.contract.functions.getCount().call()) == 0:
             print("Unable to decrement a zero")
             return False
@@ -65,11 +88,13 @@ class Counter:
 
 
 if __name__ == "__main__":
-    # Initialization of object
+    """ Initialization of instance.
+    """
     Counter.connect()
     instance = Counter()
 
-    # Console user interface logic
+    """ Console user interface logic.
+    """
     options = {
         "1": Counter.getCount,
         "3": Counter.increment,
@@ -83,7 +108,7 @@ if __name__ == "__main__":
         )
         if int(operation) == 2:
             while True:
-                # Assuming that the counter works with uints
+                """ Assuming that the counter works with uints."""
                 value = input("Choose non-negative integer value to assign\n")
                 if value.isdigit():
                     break

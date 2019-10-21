@@ -1,10 +1,10 @@
 {
-  "name": "CounterProject",
-  "version": "1.0.0",
+  "name": "CounterSolidity",
+  "version": "1.0.2",
   "description": "Smart contract simulating simple counter",
   "author": "darkost12 <darkost12@gmail.com>",
   "license": "MIT",
-  "repository": "https://github.com/darkost12/CounterProject.git",
+  "repository": "https://github.com/darkost12/CounterSolidity.git",
   "keywords": [
     "solidity",
     "python",
