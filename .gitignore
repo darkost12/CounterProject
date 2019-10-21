@@ -5,5 +5,5 @@ __pycache__/
 
 coverage/
 .coverage
-coverage.*
 .pytest_cache/
+yarn-error.log

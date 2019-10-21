@@ -5,11 +5,12 @@ import sys
 import os
 
 
+# Class which provides Counter type object
 class Counter:
     def __init__(self):
         self.getContract()
 
-    # Using ganache-cli RPC-Provider
+    # Function that connects to ganache client
     def connect():
         web3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:8545"))
         web3.eth.defaultAccount = web3.eth.accounts[0]
@@ -17,24 +18,27 @@ class Counter:
             print("Connected to the network!")
             Counter.web3 = web3
         else:
-            sys.exit("Oops! Something went wrong. Check client's settings.")
+            sys.exit("Error. Check ganache-cli settings.")
 
-    # Address in local blockchain of Ganache-cli
+    # Function that links application with contract in the network
     def getContract(self):
         address = os.getenv("CONT_ADDR")
         if address == None:
-            sys.exit("Address not found. Check env variable \'CONT_ADDR\'")
+            sys.exit("Set contract address in variable \'CONT_ADDR\' manually")
         with open("abi.json") as file:
             abi = json.load(file)
         self.contract = Counter.web3.eth.contract(
             address=Counter.web3.toChecksumAddress(address), abi=abi
         )
 
+    # Function that gets the value of counter from the state variable
+    # return value - the current state of variable in contract
     def getCount(self):
-        current = self.contract.functions.getCount().call()
-        print("The current value of counter is ", current)
-        return current
+        value = self.contract.functions.getCount().call()
+        print("The current value of counter is ", value)
+        return value
 
+    # Function that assigns new value to the state variable in contract
     def setCount(self, value):
         if int(value) < 0:
             print("Unable to set negative counter")
@@ -43,11 +47,14 @@ class Counter:
         tx_receipt = Counter.web3.eth.waitForTransactionReceipt(tx_hash)
         self.getCount()
 
+    # Function that increases the state variable by 1
     def increment(self):
         tx_hash = self.contract.functions.increment().transact()
         tx_receipt = Counter.web3.eth.waitForTransactionReceipt(tx_hash)
         self.getCount()
 
+    # Function that reduces the state variable by 1
+    # return False - if 0 was met
     def decrement(self):
         if int(self.contract.functions.getCount().call()) == 0:
             print("Unable to decrement a zero")
@@ -58,9 +65,11 @@ class Counter:
 
 
 if __name__ == "__main__":
+    # Initialization of object
     Counter.connect()
     instance = Counter()
 
+    # Console user interface logic
     options = {
         "1": Counter.getCount,
         "3": Counter.increment,

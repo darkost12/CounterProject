@@ -1,5 +1,5 @@
-const TransactCall = artifacts.require("./TransactCall.sol");
+const Counter = artifacts.require("./Counter.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(TransactCall);
+  deployer.deploy(Counter);
 };

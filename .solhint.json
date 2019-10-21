@@ -1,12 +1,12 @@
 {
-  "extends": "solhint:default"
-  "rules": {
-      "indent": ["error", 4],
-
-      "bracket-align": "warn",
-      "func-visibility": "warn"
-      "no-simple-event-func-name": "warn",
-      "reentrancy": "warn",
-      "state-visibility": "warn"
+    "extends": "solhint:default",
+    "plugins": [],
+    "rules": {
+      "const-name-snakecase": "off",
+      "avoid-suicide": "error",
+      "avoid-sha3": "warn",
+      "avoid-tx-origin:": "warn",
+      "not-rely-on-time": "warn",
+      "not-rely-on-block-hash": "warn"
     }
 }
