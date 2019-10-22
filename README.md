@@ -1,4 +1,4 @@
-# CounterSolidiy
+# CounterSolidity
 Ethereum smart contract featuring a simple counter for studying purposes.
 
 ## How to use
