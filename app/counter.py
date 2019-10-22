@@ -45,7 +45,7 @@ class Counter:
             value (uint)  the current state of variable in contract.
         """
         value = self.contract.functions.getCount().call()
-        print("The current value of counter is ", value)
+        Counter.printCount(value)
         return value
 
     def setCount(self, value):
@@ -59,7 +59,6 @@ class Counter:
             return False
         tx_hash = self.contract.functions.setCount(int(value)).transact()
         tx_receipt = Counter.web3.eth.waitForTransactionReceipt(tx_hash)
-        self.getCount()
 
     def increment(self):
         """ Function that increases the state variable by 1.
@@ -68,7 +67,6 @@ class Counter:
         """
         tx_hash = self.contract.functions.increment().transact()
         tx_receipt = Counter.web3.eth.waitForTransactionReceipt(tx_hash)
-        self.getCount()
 
     #
     # return False - if 0 was met
@@ -84,7 +82,9 @@ class Counter:
             return False
         tx_hash = self.contract.functions.decrement().transact()
         tx_receipt = Counter.web3.eth.waitForTransactionReceipt(tx_hash)
-        self.getCount()
+
+    def printCount(value):
+        print("The current value of counter is ", value)
 
 
 if __name__ == "__main__":
