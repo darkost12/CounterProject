@@ -1,45 +1,27 @@
-# TransactCall
-Ethereum smart contract of simple counter
-## Installation
+# CounterSolidiy
+Ethereum smart contract featuring a simple counter for studying purposes.
+
+## How to use
 ```bash
+# Compile contracts to ./build
 npm run build
-yarn build
-```
-## Only compile
-```bash
-npm run compile
-yarn compile
-```
-## Tests are available
-```bash
+
+# Test contracts
 npm run test
+
+# Perform code coverage analysis
 npm run coverage
+
+# Perform linting (all / only .sol files / only .js files)
+npm run lint
+npm run lint:sol
+npm run lint:js
+npm run lint:js:fix
 ```
-or
-```bash
-yarn test
-yarn coverage
-```
-## Python interface application and tests
-* IMPORTANT! Before usage and running tests make sure your ganache is on and environment variable CONT_ADDR is set!
+
+## Python CLI application and tests (/app directory)
+* IMPORTANT! Before usage and running tests make sure your ganache is running and environment variable CONT_ADDR is set!
 ```bash
 pytest test_counter.py
 pytest --cov counter test_counter.py
-```
-## Linter
-```bash
-npm run lint
-yarn lint
-```
-* Only .sol
-```bash
-npm run lint:sol
-yarn sol
-```
-* Only .js
-```bash
-npm run lint:js
-npm run lint:js:fix
-yarn lint:js
-yarn lint:js:fix
 ```

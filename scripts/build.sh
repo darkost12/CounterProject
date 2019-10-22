@@ -6,6 +6,7 @@ set -o errexit
 # Clean the existing build directory.
 rm -rf build
 
+rm -rf "ignored_contracts"
 # Create a temporary directory to place ignored files (e.g. examples).
 tmp_dir="ignored_contracts"
 mkdir "$tmp_dir"

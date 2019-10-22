@@ -1,7 +1,7 @@
 {
   "name": "CounterSolidity",
   "version": "1.0.2",
-  "description": "Smart contract simulating simple counter",
+  "description": "Smart contract featuring a simple counter for studying purposes",
   "author": "darkost12 <darkost12@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/darkost12/CounterSolidity.git",
@@ -15,9 +15,9 @@
   ],
   "scripts": {
     "build": "scripts/build.sh",
+    "compile": "truffle compile",
     "test": "npm run compile && scripts/test.sh",
     "coverage": "scripts/coverage.sh",
-    "compile": "truffle compile",
     "console": "truffle console",
     "lint": "npm run lint:js && npm run lint:sol",
     "lint:js": "eslint test/*",
@@ -39,14 +39,13 @@
     "ganache": "^6.4.4",
     "ganache-cli": "^6.7.0",
     "openzeppelin-solidity": "^2.3.0",
+    "solhint": "^2.3.0",
     "solidity": "^0.0.1",
     "solidity-coverage": "^0.6.7",
     "truffle": "^5.0.40",
-    "truffle-artifactor": "^4.0.30",
     "truffle-flattener": "^1.4.2",
+    "truffle/artifactor": "^4.0.30",
     "web3": "^1.2.1"
   },
-  "dependencies": {
-    "solhint": "^2.3.0"
-  }
+  "dependencies": {}
 }

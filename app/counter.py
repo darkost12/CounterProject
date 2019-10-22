@@ -21,7 +21,7 @@ class Counter:
             print("Connected to the network!")
             Counter.web3 = web3
         else:
-            sys.exit("Error. Check ganache-cli settings.")
+            sys.exit("Could not connect to Ganache. Check ganache-cli settings.")
 
     def getContract(self):
         """ Function that links application with contract in the network.
@@ -29,7 +29,7 @@ class Counter:
             self (Counter instance).
         """
         address = os.getenv("CONT_ADDR")
-        if address == None:
+        if address is None:
             sys.exit("Set contract address in variable \'CONT_ADDR\' manually")
         with open("abi.json") as file:
             abi = json.load(file)
@@ -44,9 +44,7 @@ class Counter:
         Returns:
             value (uint)  the current state of variable in contract.
         """
-        value = self.contract.functions.getCount().call()
-        Counter.printCount(value)
-        return value
+        return self.contract.functions.getCount().call()
 
     def setCount(self, value):
         """ Function that assigns new value to the state variable in contract.
@@ -68,8 +66,6 @@ class Counter:
         tx_hash = self.contract.functions.increment().transact()
         tx_receipt = Counter.web3.eth.waitForTransactionReceipt(tx_hash)
 
-    #
-    # return False - if 0 was met
     def decrement(self):
         """ Function that reduces the state variable by 1.
         Args:
@@ -83,8 +79,8 @@ class Counter:
         tx_hash = self.contract.functions.decrement().transact()
         tx_receipt = Counter.web3.eth.waitForTransactionReceipt(tx_hash)
 
-    def printCount(value):
-        print("The current value of counter is ", value)
+    def printCount(self):
+        print("The current value of counter is ", self.getCount())
 
 
 if __name__ == "__main__":
@@ -93,7 +89,7 @@ if __name__ == "__main__":
     Counter.connect()
     instance = Counter()
 
-    """ Console user interface logic.
+    """ Console line interface logic.
     """
     options = {
         "1": Counter.getCount,
@@ -112,8 +108,10 @@ if __name__ == "__main__":
                 value = input("Choose non-negative integer value to assign\n")
                 if value.isdigit():
                     break
-            Counter.setCount(instance, value)
+            instance.setCount(int(value))
+            instance.printCount()
         elif operation in options:
             options[operation](instance)
+            instance.printCount()
         elif int(operation) == 5:
             sys.exit()

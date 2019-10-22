@@ -36,3 +36,7 @@ def testComplex():
 
 def testNegativeSet():
     assert instance.setCount(-3) == False
+
+
+def testPrint():
+    instance.printCount()
