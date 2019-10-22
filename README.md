@@ -21,6 +21,7 @@ npm run lint:js:fix
 
 ## Python CLI application and tests (/app directory)
 * IMPORTANT! Before usage and running tests make sure your ganache is running and environment variable CONT_ADDR is set!
+Run tests from /app directory!
 ```bash
 pytest test_counter.py
 pytest --cov counter test_counter.py
